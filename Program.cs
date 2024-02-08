@@ -25,6 +25,21 @@
                 Console.WriteLine($"{employee.FirstName} {employee.LastName}");
             }
 
+            var employeesByDepartment = from employee in employees
+                                        group employee by employee.Department into groupedEmployees
+                                        orderby groupedEmployees.Key
+                                        select groupedEmployees;
+
+            foreach (var department in employeesByDepartment)
+            {
+                Console.WriteLine($"Department: {department.Key}");
+
+                foreach (var employee in department)
+                {
+                    Console.WriteLine($"    {employee.FirstName} {employee.LastName}");
+                }
+            }
+
             
         }
     }
